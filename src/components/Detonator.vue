@@ -31,12 +31,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
 .wrap {
+  padding-bottom: 10px;
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow-y: auto;
-  overflow-x: hidden;
 }
 .detonator {
   width: 450px;
@@ -163,7 +162,7 @@ export default {
 //连接处
 .connect-wrap {
   width: 413px;
-  height: 50px;
+  height: 30px;
   position: relative;
   z-index: 10;
   display: flex;
@@ -209,12 +208,13 @@ export default {
 //底部键盘
 .detonator-bottom {
   width: 300px;
-  height: 350px;
+  height: 360px;
   background: chocolate;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) inset;
   position: relative;
+  padding: 0 20px 20px 20px;
   &:after {
     position: absolute;
     content: "";

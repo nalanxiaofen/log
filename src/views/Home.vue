@@ -64,7 +64,9 @@ export default {
   display: flex;
   flex-direction: column;
   header {
-    padding: 5px;
+    padding-top: 5px;
+    padding-bottom: 3px;
+    margin-bottom: 10px;
     display: flex;
     flex-direction: row;
     justify-content: center;
