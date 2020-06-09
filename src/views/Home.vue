@@ -8,7 +8,9 @@
         <img class="logo" alt="Vue logo" src="../assets/logo.png" />
         <span class="title">起爆器操作日志复现</span>
       </header>
-      <div class="content"></div>
+      <div class="content">
+        <Detonator></Detonator>
+      </div>
     </div>
     <!-- 页面右部 -->
     <div class="page-right"></div>
@@ -16,12 +18,12 @@
 </template>
 
 <script>
-//import HelloWorld from '@/components/HelloWorld.vue'
+import Detonator from '@/components/Detonator.vue'
 
 export default {
   name: "Home",
   components: {
-    //HelloWorld
+    Detonator
   }
 };
 </script>
@@ -46,20 +48,23 @@ export default {
   display: flex;
   flex-direction: row;
 }
+//页面左部
 .page-left {
   flex: 1;
   background: cornflowerblue;
 }
+//页面右部
 .page-right {
   flex: 1;
   background: cornflowerblue;
 }
+//页面中间
 .page-center {
   width: 500px;
   display: flex;
   flex-direction: column;
   header {
-    padding: 10px;
+    padding: 5px;
     display: flex;
     flex-direction: row;
     justify-content: center;
