@@ -18,48 +18,48 @@
         <!-- one -->
         <div class="row pt10">
           <div class="btn-box">
-            <div class="btn-fn">F1</div>
+            <div class="btn-fn" :class="{'btn-active':isKeyCode('FN1')||isKeyCode('FN12')}">F1</div>
           </div>
           <div class="btn-box"></div>
           <div class="btn-box">
-            <div class="btn-fn">F2</div>
+            <div class="btn-fn" :class="{'btn-active':isKeyCode('FN2')||isKeyCode('FN12')}">F2</div>
           </div>
         </div>
         <!-- two -->
         <div class="row pt10">
           <div class="btn-box">
-            <div class="btn-handle">返回</div>
+            <div class="btn-handle" :class="{'btn-active':isKeyCode('BACK')}">返回</div>
           </div>
           <div class="btn-box"></div>
           <div class="btn-box">
-            <div class="btn-handle">确定</div>
+            <div class="btn-handle" :class="{'btn-active':isKeyCode('OK')}">确定</div>
           </div>
         </div>
         <!-- three -->
         <div class="row">
           <div class="btn-box"></div>
           <div class="btn-box">
-            <div class="btn-arrow btn-active">&uarr;</div>
+            <div class="btn-arrow" :class="{'btn-active':isKeyCode('TOP')}">&uarr;</div>
           </div>
           <div class="btn-box"></div>
         </div>
         <!-- four -->
         <div class="row pt10">
           <div class="btn-box">
-            <div class="btn-arrow">&larr;</div>
+            <div class="btn-arrow" :class="{'btn-active':isKeyCode('LEFT')}">&larr;</div>
           </div>
           <div class="btn-box">
-            <div class="btn-arrow">&darr;</div>
+            <div class="btn-arrow" :class="{'btn-active':isKeyCode('DOWN')}">&darr;</div>
           </div>
           <div class="btn-box">
-            <div class="btn-arrow">&rarr;</div>
+            <div class="btn-arrow" :class="{'btn-active':isKeyCode('RIGHT')}">&rarr;</div>
           </div>
         </div>
         <!-- five -->
         <div class="row pt10">
           <div class="row-left">
             <div class="btn-box pt10">
-              <div class="btn-charg">
+              <div class="btn-charg" :class="{'btn-active':isKeyCode('CHARGE')}">
                 <img class="charg" alt="Vue logo" src="../assets/icon_lightning.png" />
               </div>
             </div>
@@ -68,25 +68,25 @@
             <!-- five-one -->
             <div class="row pt10">
               <div class="btn-box">
-                <div class="btn-num">1</div>
+                <div class="btn-num" :class="{'btn-active':isKeyCode('NUM1')}">1</div>
               </div>
               <div class="btn-box">
-                <div class="btn-num">2</div>
+                <div class="btn-num" :class="{'btn-active':isKeyCode('NUM2')}">2</div>
               </div>
               <div class="btn-box">
-                <div class="btn-num">3</div>
+                <div class="btn-num" :class="{'btn-active':isKeyCode('NUM3')}">3</div>
               </div>
             </div>
             <!-- five-two -->
             <div class="row pt10">
               <div class="btn-box">
-                <div class="btn-num">4</div>
+                <div class="btn-num" :class="{'btn-active':isKeyCode('NUM4')}">4</div>
               </div>
               <div class="btn-box">
-                <div class="btn-num">5</div>
+                <div class="btn-num" :class="{'btn-active':isKeyCode('NUM5')}">5</div>
               </div>
               <div class="btn-box">
-                <div class="btn-num">6</div>
+                <div class="btn-num" :class="{'btn-active':isKeyCode('NUM6')}">6</div>
               </div>
             </div>
           </div>
@@ -94,35 +94,35 @@
         <!-- six -->
         <div class="row pt10">
           <div class="btn-box">
-            <div class="btn-num">FN</div>
+            <div class="btn-num" :class="{'btn-active':isKeyCode('FN')}">FN</div>
           </div>
           <div class="btn-box">
-            <div class="btn-num">7</div>
+            <div class="btn-num" :class="{'btn-active':isKeyCode('NUM7')}">7</div>
           </div>
           <div class="btn-box">
-            <div class="btn-num">8</div>
+            <div class="btn-num" :class="{'btn-active':isKeyCode('NUM8')}">8</div>
           </div>
           <div class="btn-box">
-            <div class="btn-num">9</div>
+            <div class="btn-num" :class="{'btn-active':isKeyCode('NUM9')}">9</div>
           </div>
         </div>
         <!-- seven -->
         <div class="row pt10">
           <div class="btn-box">
-            <div class="btn-switch">
+            <div class="btn-switch" :class="{'btn-active':isKeyCode('ONOFF')}">
               <img class="switch" alt="Vue logo" src="../assets/icon_switch.png" />
             </div>
           </div>
           <div class="btn-box">
-            <div class="btn-num">
+            <div class="btn-num" :class="{'btn-active':isKeyCode('STAR')}">
               <img class="icon" alt="Vue logo" src="../assets/icon_xing.png" />
             </div>
           </div>
           <div class="btn-box">
-            <div class="btn-num">0</div>
+            <div class="btn-num" :class="{'btn-active':isKeyCode('NUM0')}">0</div>
           </div>
           <div class="btn-box">
-            <div class="btn-num">#</div>
+            <div class="btn-num" :class="{'btn-active':isKeyCode('SHARP')}">#</div>
           </div>
         </div>
       </div>
@@ -135,6 +135,32 @@ export default {
   name: "Detonator",
   props: {
     msg: String
+  },
+  data(){
+    return {
+      keyCode:['FN12']
+    }
+  },
+  mounted(){
+    this.timeout = setInterval(()=>{
+      this.clickFn();
+    },1000);
+  },
+  beforeDestroy(){
+    clearInterval(this.timeout);
+  },
+  methods:{
+    isKeyCode(keycode){
+      let tf = this.keyCode.includes(keycode);
+      return tf;
+    },
+    clickFn(){
+      const arr = ['ONOFF','FN1','FN2','FN','FN12','TOP','DOWN','LEFT','RIGHT','CHARGE',
+      'NUM0','NUM1','NUM2','NUM3','NUM4','NUM5','NUM6','NUM7','NUM8','NUM9','OK','BACK','STAR','SHARP'];
+      let item = arr[Math.random() * arr.length | 0];
+      console.log(item);
+      this.keyCode = [item];
+    }
   }
 };
 </script>
