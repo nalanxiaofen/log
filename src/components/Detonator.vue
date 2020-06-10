@@ -14,7 +14,118 @@
         <div class="connect"></div>
       </div>
       <!-- 键盘区域 -->
-      <div class="detonator-bottom"></div>
+      <div class="detonator-bottom">
+        <!-- one -->
+        <div class="row pt10">
+          <div class="btn-box">
+            <div class="btn-fn">F1</div>
+          </div>
+          <div class="btn-box"></div>
+          <div class="btn-box">
+            <div class="btn-fn">F2</div>
+          </div>
+        </div>
+        <!-- two -->
+        <div class="row pt10">
+          <div class="btn-box">
+            <div class="btn-handle">返回</div>
+          </div>
+          <div class="btn-box"></div>
+          <div class="btn-box">
+            <div class="btn-handle">确定</div>
+          </div>
+        </div>
+        <!-- three -->
+        <div class="row">
+          <div class="btn-box"></div>
+          <div class="btn-box">
+            <div class="btn-arrow btn-active">&uarr;</div>
+          </div>
+          <div class="btn-box"></div>
+        </div>
+        <!-- four -->
+        <div class="row pt10">
+          <div class="btn-box">
+            <div class="btn-arrow">&larr;</div>
+          </div>
+          <div class="btn-box">
+            <div class="btn-arrow">&darr;</div>
+          </div>
+          <div class="btn-box">
+            <div class="btn-arrow">&rarr;</div>
+          </div>
+        </div>
+        <!-- five -->
+        <div class="row pt10">
+          <div class="row-left">
+            <div class="btn-box pt10">
+              <div class="btn-charg">
+                <img class="charg" alt="Vue logo" src="../assets/icon_lightning.png" />
+              </div>
+            </div>
+          </div>
+          <div class="row-right">
+            <!-- five-one -->
+            <div class="row pt10">
+              <div class="btn-box">
+                <div class="btn-num">1</div>
+              </div>
+              <div class="btn-box">
+                <div class="btn-num">2</div>
+              </div>
+              <div class="btn-box">
+                <div class="btn-num">3</div>
+              </div>
+            </div>
+            <!-- five-two -->
+            <div class="row pt10">
+              <div class="btn-box">
+                <div class="btn-num">4</div>
+              </div>
+              <div class="btn-box">
+                <div class="btn-num">5</div>
+              </div>
+              <div class="btn-box">
+                <div class="btn-num">6</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- six -->
+        <div class="row pt10">
+          <div class="btn-box">
+            <div class="btn-num">FN</div>
+          </div>
+          <div class="btn-box">
+            <div class="btn-num">7</div>
+          </div>
+          <div class="btn-box">
+            <div class="btn-num">8</div>
+          </div>
+          <div class="btn-box">
+            <div class="btn-num">9</div>
+          </div>
+        </div>
+        <!-- seven -->
+        <div class="row pt10">
+          <div class="btn-box">
+            <div class="btn-switch">
+              <img class="switch" alt="Vue logo" src="../assets/icon_switch.png" />
+            </div>
+          </div>
+          <div class="btn-box">
+            <div class="btn-num">
+              <img class="icon" alt="Vue logo" src="../assets/icon_xing.png" />
+            </div>
+          </div>
+          <div class="btn-box">
+            <div class="btn-num">0</div>
+          </div>
+          <div class="btn-box">
+            <div class="btn-num">#</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -28,7 +139,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
 .wrap {
   padding-bottom: 10px;
@@ -39,7 +149,7 @@ export default {
 }
 .detonator {
   width: 450px;
-  min-height: 680px;
+  min-height: 650px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -150,12 +260,17 @@ export default {
     }
     //屏幕
     .screen-content {
-      margin-bottom: 15px;
+      position: relative;
+      margin-bottom: 10px;
       flex: 1;
-      border: 15px solid #333;
+      border-left: 20px solid #333;
+      border-right: 20px solid #333;
+      border-top: 16px solid #333;
+      border-bottom: 16px solid #333;
       background: #f5f5f5;
       border-radius: 8px;
       display: flex;
+      z-index: 99;
     }
   }
 }
@@ -208,13 +323,13 @@ export default {
 //底部键盘
 .detonator-bottom {
   width: 300px;
-  height: 360px;
+  height: 330px;
   background: chocolate;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) inset;
   position: relative;
-  padding: 0 20px 20px 20px;
+  padding: 0 30px 20px 30px;
   &:after {
     position: absolute;
     content: "";
@@ -225,6 +340,122 @@ export default {
     box-shadow: 0 0 25px 8px #548e7f;
     border-radius: 10px;
     z-index: -1;
+  }
+  .pt10{padding-top: 10px;}
+  .row{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    z-index: 99;
+    .row-left{
+      flex: 1;
+    }
+    .row-right{
+      flex: 3;
+    }
+    .btn-box{
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .btn-fn{
+        background: #55a00a;
+        width: 80px;
+        height: 30px;
+        border-radius: 5px;
+        line-height: 30px;
+        font-size: 16px;
+        color: #f5f5f5;
+        font-weight: bold;
+        text-shadow: 1px 1px 2px #e4393c;
+        box-shadow: 0px 0px 6px #b24848 inset, 1px 1px 2px #c74242;
+      }
+      .btn-handle{
+        background: #333;
+        width: 70px;
+        height: 28px;
+        border-radius: 5px;
+        line-height: 28px;
+        font-size: 14px;
+        color: #f5f5f5;
+        font-weight: bold;
+        text-shadow: 1px 1px 2px #e4393c;
+        box-shadow: 0px 0px 7px #d1c1b9 inset, 1px 1px 2px #c74242;
+      }
+      .btn-arrow{
+        background: #333;
+        width: 50px;
+        height: 25px;
+        border-radius: 5px;
+        line-height: 22px;
+        font-size: 14px;
+        color: #f5f5f5;
+        font-weight: bold;
+        text-shadow: 1px 1px 2px #e4393c;
+        box-shadow: 0px 0px 7px #d1c1b9 inset, 1px 1px 2px #c74242;
+      }
+      .btn-num{
+        background: #333;
+        width: 50px;
+        height: 28px;
+        border-radius: 5px;
+        font-size: 13px;
+        color: #f5f5f5;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-shadow: 1px 1px 2px #e4393c;
+        box-shadow: 0px 0px 7px #d1c1b9 inset, 1px 1px 2px #c74242;
+        .icon{
+          width: 14px;
+        }
+      }
+      .btn-switch{
+        background: #e4393c;
+        width: 50px;
+        height: 28px;
+        border-radius: 5px;
+        font-size: 13px;
+        color: #f5f5f5;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-shadow: 1px 1px 2px #e4393c;
+        box-shadow: 0px 0px 7px #5f260a inset, 1px 1px 2px #ae9b9b;
+        .switch{
+          width: 18px;
+        }
+      }
+      .btn-charg{
+        background: #e4393c;
+        width: 50px;
+        height: 66px;
+        border-radius: 5px;
+        font-size: 13px;
+        color: #f5f5f5;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-shadow: 1px 1px 2px #e4393c;
+        box-shadow: 0px 0px 8px #5f260a inset, 1px 1px 2px #ae9b9b;
+        .charg{
+          width: 30px;
+          height: 35px;
+          padding: 6px 0;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: 3px;
+          box-shadow: 0px 0px 1px #e2ff00;
+        }
+      }
+      .btn-active{
+        background: #0b4b1c;
+        text-shadow: 1px 1px 2px #e4393c;
+        box-shadow: 0px 0px 20px #00fcee inset, 1px 1px 2px #e4f505;
+      }
+    }
   }
 }
 </style>
