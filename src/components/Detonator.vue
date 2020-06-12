@@ -8,7 +8,7 @@
           </div>
           <!-- 显示屏 -->
           <div class="screen-content">
-            <ControllerView></ControllerView>
+            <Screen></Screen>
           </div>
         </div>
       </div>
@@ -133,11 +133,11 @@
 </template>
 
 <script>
-import ControllerView from './detonator/ControllerView';
+import Screen from './Screen';
 export default {
   name: "Detonator",
   components:{
-    ControllerView
+    Screen
   },
   data(){
     return {
