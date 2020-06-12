@@ -133,7 +133,7 @@
 </template>
 
 <script>
-import Screen from '../../components/Screen';
+import Screen from '../../components/Screen/index';
 export default {
   name: "Detonator",
   components:{

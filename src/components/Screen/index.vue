@@ -32,33 +32,33 @@ export default {
     locationSrc(){
       switch (this.styleType) {
         case 'jd':
-          return require('../assets/icon_location_jd.png');
+          return require('../../assets/icon_location_jd.png');
         case 'yw':
-          return require('../assets/icon_location_yw.png');
+          return require('../../assets/icon_location_yw.png');
         default:
-          return require('../assets/icon_location.png');
+          return require('../../assets/icon_location.png');
       }
     },
     //蓝牙图标
     bluetoothSrc(){
       switch (this.styleType) {
         case 'jd':
-          return require('../assets/icon_bluetooth_jd.png');
+          return require('../../assets/icon_bluetooth_jd.png');
         case 'yw':
-          return require('../assets/icon_bluetooth_yw.png');
+          return require('../../assets/icon_bluetooth_yw.png');
         default:
-          return require('../assets/icon_bluetooth.png');
+          return require('../../assets/icon_bluetooth.png');
       }
     },
     //wifi图标
     wifiSrc(){
       switch (this.styleType) {
         case 'jd':
-          return require('../assets/icon_wifi_jd.png');
+          return require('../../assets/icon_wifi_jd.png');
         case 'yw':
-          return require('../assets/icon_wifi_yw.png');
+          return require('../../assets/icon_wifi_yw.png');
         default:
-          return require('../assets/icon_wifi.png');
+          return require('../../assets/icon_wifi.png');
       }
     },
     //不同模式样式
