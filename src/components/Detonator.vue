@@ -7,7 +7,9 @@
             <div class="line"></div>
           </div>
           <!-- 显示屏 -->
-          <div class="screen-content"></div>
+          <div class="screen-content">
+            <ControllerView></ControllerView>
+          </div>
         </div>
       </div>
       <div class="connect-wrap">
@@ -131,10 +133,11 @@
 </template>
 
 <script>
+import ControllerView from './detonator/ControllerView';
 export default {
   name: "Detonator",
-  props: {
-    msg: String
+  components:{
+    ControllerView
   },
   data(){
     return {
@@ -158,7 +161,6 @@ export default {
       const arr = ['ONOFF','FN1','FN2','FN','FN12','TOP','DOWN','LEFT','RIGHT','CHARGE',
       'NUM0','NUM1','NUM2','NUM3','NUM4','NUM5','NUM6','NUM7','NUM8','NUM9','OK','BACK','STAR','SHARP'];
       let item = arr[Math.random() * arr.length | 0];
-      console.log(item);
       this.keyCode = [item];
     }
   }
