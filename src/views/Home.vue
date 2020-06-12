@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import Detonator from '@/components/Detonator.vue'
+import Detonator from './detonator/Detonator';
 
 export default {
   name: "Home",
