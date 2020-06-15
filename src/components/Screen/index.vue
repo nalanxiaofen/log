@@ -15,13 +15,17 @@
         </div>
     </div>
     <div class="content">
-
+      <Controller></Controller>
     </div>
   </div>
 </template>
 <script>
+import Controller from './Controller';
 export default {
   name: "Screen",
+  components:{
+    Controller
+  },
   data() {
     return {
       styleType:'bj',//屏幕样式模式jd经典，yw夜晚，标准bj
@@ -106,6 +110,7 @@ export default {
   display: flex;
   flex-direction: row;
   color: #f64704;
+  background: rgba(44, 62, 80, 0.1);
   .left{
       flex: 1;
       text-align: left;
