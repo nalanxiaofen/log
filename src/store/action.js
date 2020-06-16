@@ -91,8 +91,8 @@ export const changeFIRE_CONFIRM_Action = ({ commit }, payload) => {
 }
 
 //派发更改FIRE_AUTH信息action
-export const changeFIRE_CONFIRM_Action = ({ commit }, payload) => {
-    commit('changeFIRE_CONFIRM', {
+export const changeFIRE_AUTH_Action = ({ commit }, payload) => {
+    commit('changeFIRE_AUTH', {
         progress: payload.progress,
         authStatus: payload.authStatus,
         lgNum: payload.lgNum,
