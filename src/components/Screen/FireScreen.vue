@@ -188,7 +188,7 @@
 </template>
 <script>
 export default {
-  name: "Controller",
+  name: "FireScreen",
   data() {
     return {
       screenType:'FIRE-FIRE',//起爆控制FIRE-MAIN,起爆确定FIRE-CONFIRM,起爆授权FIRE-AUTH,起爆充电FIRE-CHARGE，起爆FIRE-FIRE

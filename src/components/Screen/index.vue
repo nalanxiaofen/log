@@ -15,16 +15,16 @@
         </div>
     </div>
     <div class="content">
-      <Controller></Controller>
+      <FireScreen></FireScreen>
     </div>
   </div>
 </template>
 <script>
-import Controller from './Controller';
+import FireScreen from './FireScreen';
 export default {
   name: "Screen",
   components:{
-    Controller
+    FireScreen
   },
   data() {
     return {
