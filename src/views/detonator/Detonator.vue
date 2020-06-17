@@ -134,34 +134,21 @@
 
 <script>
 import Screen from '../../components/Screen/index';
+import { mapState } from 'vuex';
 export default {
   name: "Detonator",
   components:{
     Screen
   },
-  data(){
-    return {
-      keyCode:['FN12']
-    }
-  },
-  mounted(){
-    this.timeout = setInterval(()=>{
-      this.clickFn();
-    },1000);
-  },
-  beforeDestroy(){
-    clearInterval(this.timeout);
+  computed:{
+    ...mapState([
+      'itemKeyCode'
+    ])
   },
   methods:{
     isKeyCode(keycode){
-      let tf = this.keyCode.includes(keycode);
+      let tf = this.itemKeyCode.includes(keycode);
       return tf;
-    },
-    clickFn(){
-      const arr = ['ONOFF','FN1','FN2','FN','FN12','TOP','DOWN','LEFT','RIGHT','CHARGE',
-      'NUM0','NUM1','NUM2','NUM3','NUM4','NUM5','NUM6','NUM7','NUM8','NUM9','OK','BACK','STAR','SHARP'];
-      let item = arr[Math.random() * arr.length | 0];
-      this.keyCode = [item];
     }
   }
 };
