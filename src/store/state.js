@@ -22,19 +22,21 @@ export default {
         FIRE_MAIN: {
             progress: 0,//进度条信息0~100
             hitMsg: '准备中...',//提示信息
-            times: null//时间，2020-06-13 21:45
+            times: '2020-06-13 21:45'//时间，2020-06-13 21:45
         },
         FIRE_CONFIRM: {
             onLineLG: 0,//在线雷管总数
             schemeNum: 0,//方案总数
-            delayRange: [0, 0],//延时区间
+            delayRange: [90, 120],//延时区间
             isModelBox: false,//是否显示提示模态框
-            hitMsg:null//提示信息
+            hitMsg:'方案匹配正常，按[确定]键继续'//提示信息
         },
         FIRE_AUTH: {
             progress: 0,//起爆授权进度
             authStatus: 0,//爆破授权状态0正常，1异常, 2异常检测, 3检测结果, 4异常项详情
+            errorProgress:0,//异常扫描进度
             lgNum: 10,//扫描到的产品数量
+            errorNum: 3,//异常数量
             TNum: 2,//状态T错误数量
             DNum: 1,//状态D错误数量
             CNum: 0,//状态C错误数量

@@ -1,32 +1,85 @@
 //进入起爆控制的进度
 export const fireMainProgress = state => {
     let progress = state.controllerScreen.FIRE_MAIN.progress;
+    let colorStr = '#33d80a';
+    let barColor = '#f5f5f5';
+    if(state.styleType==='jd'){
+        colorStr = '#555';
+    }else if(state.styleType==='yw'){
+        colorStr = '#fff';
+        barColor = '#555'
+    }
     return {
-        backgroundImage: `linear-gradient(to right, rgba(0,0,0,0) ${progress}% , #f5f5f5 0%)`
+        background: colorStr,
+        backgroundImage: `linear-gradient(to right, rgba(0,0,0,0) ${progress}% , ${barColor} 0%)`
     }
 }
 
 //起爆授权的进度
 export const fireAuthProgress = state => {
     let progress = state.controllerScreen.FIRE_AUTH.progress;
+    let colorStr = '#33d80a';
+    let barColor = '#f5f5f5';
+    if(state.styleType==='jd'){
+        colorStr = '#555';
+    }else if(state.styleType==='yw'){
+        colorStr = '#fff';
+        barColor = '#555'
+    }
     return {
-        backgroundImage: `linear-gradient(to right, rgba(0,0,0,0) ${progress}% , #f5f5f5 0%)`
+        background: colorStr,
+        backgroundImage: `linear-gradient(to right, rgba(0,0,0,0) ${progress}% , ${barColor} 0%)`
     }
 }
 
 //起爆充电的进度
 export const fireChargeProgress = state => {
     let progress = state.controllerScreen.FIRE_CHARGE.progress;
+    let colorStr = '#33d80a';
+    let barColor = '#f5f5f5';
+    if(state.styleType==='jd'){
+        colorStr = '#555';
+    }else if(state.styleType==='yw'){
+        colorStr = '#fff';
+        barColor = '#555'
+    }
     return {
-        backgroundImage: `linear-gradient(to right, rgba(0,0,0,0) ${progress}% , #f5f5f5 0%)`
+        background: colorStr,
+        backgroundImage: `linear-gradient(to right, rgba(0,0,0,0) ${progress}% , ${barColor} 0%)`
     }
 }
 
 //爆破的进度
 export const fireFireProgress = state => {
     let progress = state.controllerScreen.FIRE_FIRE.progress;
+    let colorStr = '#33d80a';
+    let barColor = '#f5f5f5';
+    if(state.styleType==='jd'){
+        colorStr = '#555';
+    }else if(state.styleType==='yw'){
+        colorStr = '#fff';
+        barColor = '#555'
+    }
     return {
-        backgroundImage: `linear-gradient(to right, rgba(0,0,0,0) ${progress}% , #f5f5f5 0%)`
+        background: colorStr,
+        backgroundImage: `linear-gradient(to right, rgba(0,0,0,0) ${progress}% , ${barColor} 0%)`
+    }
+}
+
+//异常扫描的进度
+export const errorProgress = state => {
+    let progress = state.controllerScreen.FIRE_AUTH.errorProgress;
+    let colorStr = '#33d80a';
+    let barColor = '#f5f5f5';
+    if(state.styleType==='jd'){
+        colorStr = '#555';
+    }else if(state.styleType==='yw'){
+        colorStr = '#fff';
+        barColor = '#555'
+    }
+    return {
+        background: colorStr,
+        backgroundImage: `linear-gradient(to right, rgba(0,0,0,0) ${progress}% , ${barColor} 0%)`
     }
 }
 

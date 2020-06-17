@@ -49,9 +49,13 @@ export default {
   position: relative;
   display: flex;
   flex-direction: column;
+  background: #defff6;
 }
 .view.yw{
   background: #555;
+}
+.view.jd{
+  background: #ffffff;
 }
 .header {
   width: 100%;
