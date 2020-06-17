@@ -8,84 +8,35 @@
             <span>电压：0.0 V</span>
         </div>
         <div class="right">
-            <img :src="locationSrc" alt="定位">
-            <img :src="bluetoothSrc" alt="蓝牙">
-            <img :src="wifiSrc" alt="wifi">
+            <img :src="locationIcon" alt="定位">
+            <img :src="blueToothIcon" alt="蓝牙">
+            <img :src="wifiIcon" alt="wifi">
             <div class="battery battery60" :class="otherStyle"></div>
         </div>
     </div>
     <div class="content">
-      <FireScreen></FireScreen>
+      <FireScreen v-if="itemScreenMpdal==='FIRE'"></FireScreen>
     </div>
   </div>
 </template>
 <script>
 import FireScreen from './FireScreen';
+import { mapGetters, mapState } from 'vuex';
 export default {
   name: "Screen",
   components:{
     FireScreen
   },
-  data() {
-    return {
-      styleType:'bj',//屏幕样式模式jd经典，yw夜晚，标准bj
-    };
-  },
   computed:{
-    //定位图标
-    locationSrc(){
-      switch (this.styleType) {
-        case 'jd':
-          return require('../../assets/icon_location_jd.png');
-        case 'yw':
-          return require('../../assets/icon_location_yw.png');
-        default:
-          return require('../../assets/icon_location.png');
-      }
-    },
-    //蓝牙图标
-    bluetoothSrc(){
-      switch (this.styleType) {
-        case 'jd':
-          return require('../../assets/icon_bluetooth_jd.png');
-        case 'yw':
-          return require('../../assets/icon_bluetooth_yw.png');
-        default:
-          return require('../../assets/icon_bluetooth.png');
-      }
-    },
-    //wifi图标
-    wifiSrc(){
-      switch (this.styleType) {
-        case 'jd':
-          return require('../../assets/icon_wifi_jd.png');
-        case 'yw':
-          return require('../../assets/icon_wifi_yw.png');
-        default:
-          return require('../../assets/icon_wifi.png');
-      }
-    },
-    //不同模式样式
-    otherStyle(){
-      switch (this.styleType) {
-        case 'jd':
-          return {
-            'jd':true,
-            'yw':false
-          };
-        case 'yw':
-          return {
-            'jd':false,
-            'yw':true
-          };
-        default:
-          return {
-            'jd':false,
-            'yw':false
-          };
-      }
-      
-    }
+    ...mapGetters([
+      'locationIcon',
+      'blueToothIcon',
+      'wifiIcon',
+      'otherStyle'
+    ]),
+    ...mapState([
+      'itemScreenMpdal'
+    ])
   }
 };
 </script>
