@@ -23,7 +23,8 @@ export const changeStatusBar = (state,obj={}) => {
         isLocation = state.statusBar.isLocation,
         isWIFI = state.statusBar.isWIFI,
         isBlueTooth = state.statusBar.isBlueTooth,
-        isCharge = state.statusBar.isCharge
+        isCharge = state.statusBar.isCharge,
+        isTime = state.statusBar.isTime
     } = obj;
     state.statusBar.isShow = isShow;
     state.statusBar.I = I;
@@ -34,6 +35,7 @@ export const changeStatusBar = (state,obj={}) => {
     state.statusBar.isWIFI = isWIFI;
     state.statusBar.isBlueTooth = isBlueTooth;
     state.statusBar.isCharge = isCharge;
+    state.statusBar.isTime = isTime;
 };
 
 //更改屏幕模式，jd经典，bj标准，yw夜晚

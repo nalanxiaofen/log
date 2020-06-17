@@ -28,6 +28,11 @@ export const changeItemTimesAction = ({ commit }, payload) => {
     commit('changeStatusBar', { itemTime: payload });
 }
 
+//派发时间是否显示action
+export const changeShowTimeAction = ({ commit }, payload) => {
+    commit('changeStatusBar', { isTime: payload });
+}
+
 //派发状态条是否显示action
 export const changeShowAction = ({ commit }, payload) => {
     commit('changeStatusBar', { isShow: payload });
