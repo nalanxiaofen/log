@@ -2,16 +2,18 @@
   <div class="view" :class="otherStyle">
     <div class="header" :class="otherStyle">
         <div class="left">
-            <span>电流：0.0 mA</span>
+            <span v-if="statusBar.isTime">{{statusBar.itemTime}}</span>
+            <span v-else>电流：{{statusBar.I}} mA</span>
         </div>
-        <div class="center">
-            <span>电压：0.0 V</span>
+        <div class="center" v-show="!statusBar.isTime">
+            <span>电压：{{statusBar.V}} V</span>
         </div>
         <div class="right">
-            <img :src="locationIcon" alt="定位">
-            <img :src="blueToothIcon" alt="蓝牙">
-            <img :src="wifiIcon" alt="wifi">
-            <div class="battery battery60" :class="otherStyle"></div>
+            <img :src="locationIcon" alt="定位" v-show="statusBar.isLocation" />
+            <img :src="blueToothIcon" alt="蓝牙" v-show="statusBar.isBlueTooth" />
+            <img :src="wifiIcon" alt="wifi" v-show="statusBar.isWIFI" />
+            <div class="battery" :style="eqIcon" :class="otherStyle"></div>
+            <img class="charge" :src="chargeIcon" alt="充电中" v-show="statusBar.isCharge" />
         </div>
     </div>
     <div class="content">
@@ -32,10 +34,13 @@ export default {
       'locationIcon',
       'blueToothIcon',
       'wifiIcon',
+      'chargeIcon',
+      'eqIcon',
       'otherStyle'
     ]),
     ...mapState([
-      'itemScreenMpdal'
+      'itemScreenMpdal',
+      'statusBar'
     ])
   }
 };
@@ -88,6 +93,13 @@ export default {
           width: 12px;
           vertical-align: middle;
       }
+      .charge{
+        width: 18px;
+        position: absolute;
+        top: 1px;
+        right: 3px;
+        z-index: 99;
+      }
       .battery{
           display: inline-block;
           vertical-align: middle;
@@ -116,46 +128,12 @@ export default {
               margin: auto;
           }
       }
-      .jd{
-        border: 1px solid #555;
-        background: #555;
-        background-clip: content-box;
-      }
       .yw{
-        border: 1px solid #ae9b9b;
-        background: #ae9b9b;
-        background-clip: content-box;
         &:after{
           content: '';
           display: block;
-          background: #ae9b9b;
+          background: #f5f5f5;
         }
-      }
-      .battery80{
-        background-image: linear-gradient(to right, rgba(0,0,0,0) 80% , #f5f5f5 0%);
-      }
-      .battery70{
-        background-image: linear-gradient(to right, rgba(0,0,0,0) 70% , #f5f5f5 0%);
-      }
-      .battery60{
-        background-image: linear-gradient(to right, rgba(0,0,0,0) 60% , #f5f5f5 0%);
-      }
-      .battery50{
-        background-image: linear-gradient(to right, rgba(0,0,0,0) 50% , #f5f5f5 0%);
-      }
-      .battery40{
-        background-image: linear-gradient(to right, rgba(0,0,0,0) 40% , #f5f5f5 0%);
-      }
-      .battery30{
-        background-image: linear-gradient(to right, rgba(0,0,0,0) 30% , #f5f5f5 0%);
-      }
-      .battery20{
-        border: 1px solid rgb(233, 20, 20);
-        background-image: linear-gradient(to right, rgba(0,0,0,0) 20% , #f5f5f5 0%);
-      }
-      .battery10{
-        border: 1px solid rgb(233, 20, 20);
-        background-image: linear-gradient(to right, rgba(0,0,0,0) 10% , #f5f5f5 0%);
       }
   }
 }

@@ -122,6 +122,44 @@ export const wifiIcon = state => {
     }
 }
 
+//充电图标
+export const chargeIcon = state => {
+    let styleType = state.styleType;
+    switch (styleType) {
+        case 'jd':
+            return require('../assets/icon_charge_jd.png');
+        case 'yw':
+            return require('../assets/icon_charge_yw.png');
+        default:
+            return require('../assets/icon_charge.png');
+    }
+}
+
+//电量
+export const eqIcon = state => {
+    let progress = state.statusBar.EQ;
+    let colorStr = '#33d80a';
+    let barColor = '#f5f5f5';
+    let borderColor = '#20be17';
+    if(state.styleType==='jd'){
+        colorStr = '#555';
+        borderColor = '#555';
+    }else if(state.styleType==='yw'){
+        colorStr = '#fff';
+        barColor = '#555';
+        borderColor = '#fff';
+    }
+    if(progress<20){
+        borderColor = 'rgb(233, 20, 20)';
+    }
+    return {
+        border: `1px solid ${borderColor}`,
+        background: colorStr,
+        backgroundClip: 'content-box',
+        backgroundImage: `linear-gradient(to right, rgba(0,0,0,0) ${progress}% , ${barColor} 0%)`
+    }
+}
+
 //为不同的屏幕模型添加不同的class样式
 export const otherStyle = state => {
     let styleType = state.styleType;

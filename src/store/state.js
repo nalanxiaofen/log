@@ -10,8 +10,9 @@ export default {
         isShow: true,//是否显示状态条
         I: '0.0',//电流
         V: '9.0',//电压
-        EQ: 60,//电量
-        itemTime:'',//当前日志时间，2020-06-12 09:43
+        EQ: 70,//电量
+        itemTime:'2020-06-12 09:43',//当前日志时间，2020-06-12 09:43
+        isTime: false,//是否显示时间
         isLocation: true,//是否有GPS信号
         isWIFI: true,//是否有WI-FI信号
         isBlueTooth: true,//是否已开启蓝牙
