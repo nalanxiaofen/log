@@ -42,7 +42,10 @@ export default {
       "changeFIRE_CONFIRM_Action",
       "changeFIRE_AUTH_Action",
       "changeFIRE_CHARGE_Action",
-      "changeFIRE_FIRE_Action"
+      "changeFIRE_FIRE_Action",
+      "changeIAction",
+      "changeVAction",
+      "changeEQAction"
     ]),
     getDate(timeStr) {
       const time = new Date(timeStr);
@@ -76,6 +79,9 @@ export default {
             if (item.content.id === "FIRE") {
               this.changeScreenTypeAction(item.content.code);
               let param = item.content.param;
+              this.changeIAction(param.I);
+              this.changeVAction(param.V);
+              this.changeEQAction(param.EQ);
               switch (item.content.code) {
                 case "FIRE-MAIN":
                   this.changeFIRE_MAIN_Action({
