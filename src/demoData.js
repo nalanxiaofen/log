@@ -107,7 +107,7 @@ export default {
                 onLineLG:10,
                 schemeNum:3,
                 delayRange:[1000,1500],
-                hitMsg:'方案匹配正常，按[确定]键继续',
+                hitMsg:'方案匹配异常，按[确定]键继续',
                 isModal:false
             }
         }
