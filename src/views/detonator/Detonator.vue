@@ -134,9 +134,7 @@
 
 <script>
 import Screen from "../../components/Screen/index";
-import { mapState, mapActions } from "vuex";
-
-import dataObj from "../../demoData";
+import { mapState } from "vuex";
 export default {
   name: "Detonator",
   components: {
@@ -146,120 +144,10 @@ export default {
     ...mapState(["itemKeyCode"])
   },
   methods: {
-    ...mapActions([
-      "changeTimerAction",
-      "changeKeyCodeAction",
-      "changeScreenModalAction",
-      "changeScreenTypeAction",
-      "changeFIRE_MAIN_Action",
-      "changeFIRE_CONFIRM_Action",
-      "changeFIRE_AUTH_Action",
-      "changeFIRE_CHARGE_Action",
-      "changeFIRE_FIRE_Action"
-    ]),
     isKeyCode(keycode) {
       let tf = this.itemKeyCode.includes(keycode);
       return tf;
-    },
-    getDate(timeStr) {
-      const time = new Date(timeStr);
-      const y = time.getFullYear();
-      const m = time.getMonth() + 1;
-      const d = time.getDate();
-      const hh = time.getHours();
-      const mm = time.getMinutes();
-      const ss = time.getSeconds();
-      return `${y}-${m < 10 ? "0" + m : m}-${d < 10 ? "0" + d : d} ${
-        hh < 10 ? "0" + hh : hh
-      }:${mm < 10 ? "0" + mm : mm}:${ss < 10 ? "0" + ss : ss}`;
-    },
-    demoFire() {
-      let startTimes = new Date(dataObj.logModal[0].event_time).getTime();
-      setInterval(() => {
-        let timeStr = this.getDate(startTimes);
-        startTimes += 1000;
-        this.changeTimerAction(timeStr);
-        let demoData = dataObj.logModal;
-        let itemObj = [];
-        demoData.map(item => {
-          if (item.event_time === timeStr) {
-            itemObj.push(item);
-          }
-        });
-        for (let i = 0; i < itemObj.length; i++) {
-          let item = itemObj[i];
-          if (item.source === "SCREEN") {
-            this.changeScreenModalAction(item.content.id);
-            if (item.content.id === "FIRE") {
-              this.changeScreenTypeAction(item.content.code);
-              let param = item.content.param;
-              switch (item.content.code) {
-                case "FIRE-MAIN":
-                  this.changeFIRE_MAIN_Action({
-                    times: param.time,
-                    progress: param.progress
-                  });
-                  break;
-                case "FIRE-CONFIRM":
-                  this.changeFIRE_CONFIRM_Action({
-                    onLineLG: param.onLineLG,
-                    schemeNum: param.schemeNum,
-                    delayRange: param.delayRange,
-                    isModelBox: param.isModal,
-                    hitMsg: param.hitMsg
-                  });
-                  break;
-                case "FIRE-AUTH":
-                  this.changeFIRE_AUTH_Action({
-                    progress: param.progress || 0,
-                    authStatus: param.status || 0,
-                    lgNum: param.lgNum || 0,
-                    TNum: param.TNum || 0,
-                    DNum: param.DNum || 0,
-                    CNum: param.CNum || 0
-                  });
-                  break;
-                case "FIRE-CHARGE":
-                  this.changeFIRE_CHARGE_Action({
-                    progress: param.progress || 0,
-                    chargeStatus: param.status || 0,
-                    chargeTime: param.chargeTime || 0
-                  });
-                  break;
-                case "FIRE-FIRE":
-                  this.changeFIRE_FIRE_Action(param.progress);
-                  break;
-                default:
-                  break;
-              }
-            }
-          } else if (item.source === "KEYBOARD") {
-            this.changeKeyCodeAction([item.content]);
-          }
-        }
-      }, 1000);
-    },
-    chargeTime(){
-      let num = 0;
-      let timeout = setInterval(()=>{
-        let FIRE_CHARGE = this.$store.state.controllerScreen.FIRE_CHARGE;
-        if(FIRE_CHARGE.chargeStatus===1){
-          num++;
-          this.changeFIRE_CHARGE_Action({
-            progress: FIRE_CHARGE.progress,
-            chargeStatus: FIRE_CHARGE.chargeStatus,
-            chargeTime: num
-          });
-        }else if(FIRE_CHARGE.chargeStatus===2){
-          num = 0;
-          clearInterval(timeout);
-        }
-      },1000);
     }
-  },
-  mounted() {
-    this.demoFire();
-    this.chargeTime();
   }
 };
 </script>

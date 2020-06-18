@@ -1,5 +1,5 @@
 export default {
-    timer:null,//计时器
+    timerStr:null,
     id: null,//日志id
     device_id:null,//设备编号
     username: null,//操作人员名字
