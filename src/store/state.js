@@ -31,7 +31,7 @@ export default {
             schemeNum: 0,//方案总数
             delayRange: [90, 120],//延时区间
             isModelBox: false,//是否显示提示模态框
-            hitMsg:'方案匹配正常，按[确定]键继续'//提示信息
+            hitMsg:''//提示信息
         },
         FIRE_AUTH: {
             progress: 0,//起爆授权进度
