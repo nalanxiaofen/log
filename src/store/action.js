@@ -8,6 +8,11 @@ export const changeStyleTypeAction = ({ commit }, payload) => {
     commit('changeStyleType', payload);
 }
 
+//记录时间
+export const changeTimerAction = ({ commit }, payload) => {
+    commit('changeTimer', payload);
+}
+
 //派发电流改变action
 export const changeIAction = ({ commit }, payload) => {
     commit('changeStatusBar', { I: payload });
@@ -61,6 +66,10 @@ export const changeChargeAction = ({ commit }, payload) => {
 //派发当前键码action
 export const changeKeyCodeAction = ({ commit }, payload) => {
     commit('changeKeyCode', payload);
+    let timeout = setTimeout(() => {
+        commit('changeKeyCode', []);
+        clearTimeout(timeout);
+    }, 300);
 }
 
 //派发当前屏幕模块action

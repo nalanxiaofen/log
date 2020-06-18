@@ -133,23 +133,133 @@
 </template>
 
 <script>
-import Screen from '../../components/Screen/index';
-import { mapState } from 'vuex';
+import Screen from "../../components/Screen/index";
+import { mapState, mapActions } from "vuex";
+
+import dataObj from "../../demoData";
 export default {
   name: "Detonator",
-  components:{
+  components: {
     Screen
   },
-  computed:{
-    ...mapState([
-      'itemKeyCode'
-    ])
+  computed: {
+    ...mapState(["itemKeyCode"])
   },
-  methods:{
-    isKeyCode(keycode){
+  methods: {
+    ...mapActions([
+      "changeTimerAction",
+      "changeKeyCodeAction",
+      "changeScreenModalAction",
+      "changeScreenTypeAction",
+      "changeFIRE_MAIN_Action",
+      "changeFIRE_CONFIRM_Action",
+      "changeFIRE_AUTH_Action",
+      "changeFIRE_CHARGE_Action",
+      "changeFIRE_FIRE_Action"
+    ]),
+    isKeyCode(keycode) {
       let tf = this.itemKeyCode.includes(keycode);
       return tf;
+    },
+    getDate(timeStr) {
+      const time = new Date(timeStr);
+      const y = time.getFullYear();
+      const m = time.getMonth() + 1;
+      const d = time.getDate();
+      const hh = time.getHours();
+      const mm = time.getMinutes();
+      const ss = time.getSeconds();
+      return `${y}-${m < 10 ? "0" + m : m}-${d < 10 ? "0" + d : d} ${
+        hh < 10 ? "0" + hh : hh
+      }:${mm < 10 ? "0" + mm : mm}:${ss < 10 ? "0" + ss : ss}`;
+    },
+    demoFire() {
+      let startTimes = new Date(dataObj.logModal[0].event_time).getTime();
+      setInterval(() => {
+        let timeStr = this.getDate(startTimes);
+        startTimes += 1000;
+        this.changeTimerAction(timeStr);
+        let demoData = dataObj.logModal;
+        let itemObj = [];
+        demoData.map(item => {
+          if (item.event_time === timeStr) {
+            itemObj.push(item);
+          }
+        });
+        for (let i = 0; i < itemObj.length; i++) {
+          let item = itemObj[i];
+          if (item.source === "SCREEN") {
+            this.changeScreenModalAction(item.content.id);
+            if (item.content.id === "FIRE") {
+              this.changeScreenTypeAction(item.content.code);
+              let param = item.content.param;
+              switch (item.content.code) {
+                case "FIRE-MAIN":
+                  this.changeFIRE_MAIN_Action({
+                    times: param.time,
+                    progress: param.progress
+                  });
+                  break;
+                case "FIRE-CONFIRM":
+                  this.changeFIRE_CONFIRM_Action({
+                    onLineLG: param.onLineLG,
+                    schemeNum: param.schemeNum,
+                    delayRange: param.delayRange,
+                    isModelBox: param.isModal,
+                    hitMsg: param.hitMsg
+                  });
+                  break;
+                case "FIRE-AUTH":
+                  this.changeFIRE_AUTH_Action({
+                    progress: param.progress || 0,
+                    authStatus: param.status || 0,
+                    lgNum: param.lgNum || 0,
+                    TNum: param.TNum || 0,
+                    DNum: param.DNum || 0,
+                    CNum: param.CNum || 0
+                  });
+                  break;
+                case "FIRE-CHARGE":
+                  this.changeFIRE_CHARGE_Action({
+                    progress: param.progress || 0,
+                    chargeStatus: param.status || 0,
+                    chargeTime: param.chargeTime || 0
+                  });
+                  break;
+                case "FIRE-FIRE":
+                  this.changeFIRE_FIRE_Action(param.progress);
+                  break;
+                default:
+                  break;
+              }
+            }
+          } else if (item.source === "KEYBOARD") {
+            this.changeKeyCodeAction([item.content]);
+          }
+        }
+      }, 1000);
+    },
+    chargeTime(){
+      let num = 0;
+      let timeout = setInterval(()=>{
+        let FIRE_CHARGE = this.$store.state.controllerScreen.FIRE_CHARGE;
+        if(FIRE_CHARGE.chargeStatus===1){
+          num++;
+          this.changeFIRE_CHARGE_Action({
+            progress: FIRE_CHARGE.progress,
+            chargeStatus: FIRE_CHARGE.chargeStatus,
+            chargeTime: num
+          });
+        }else if(FIRE_CHARGE.chargeStatus===2){
+          num = 0;
+          clearInterval(timeout);
+        }
+      },1000);
     }
+  },
+  mounted() {
+    this.demoFire();
+    this.chargeTime();
   }
 };
 </script>
@@ -200,7 +310,7 @@ export default {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) inset;
     position: relative;
     //天线
-    .aerial{
+    .aerial {
       width: 340px;
       height: 20px;
       background: #ffffff;
@@ -213,59 +323,69 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center;
-      &:after{
-        content: '';
+      &:after {
+        content: "";
         display: block;
         width: 22px;
         height: 20px;
         background: chocolate;
         position: absolute;
-        top:0;
+        top: 0;
         left: 0;
         transform: rotate(60deg) translateX(-3px) translateY(15px);
         z-index: 10;
         box-shadow: 0 5px 5px 0px rgba(0, 0, 0, 0.2) inset;
       }
-      &:before{
-        content: '';
+      &:before {
+        content: "";
         display: block;
         width: 22px;
         height: 20px;
         background: chocolate;
         position: absolute;
-        top:0;
+        top: 0;
         right: 0;
         transform: rotate(-60deg) translateX(3px) translateY(15px);
         z-index: 10;
         box-shadow: 0 5px 5px 0px rgba(0, 0, 0, 0.2) inset;
       }
-      .line{
+      .line {
         width: 100px;
         height: 100%;
         position: relative;
-        &:before{
-          content: '';
+        &:before {
+          content: "";
           display: block;
           width: 25px;
           height: 30px;
           box-sizing: border-box;
           border-bottom: 10px solid chocolate;
           background: #b20303;
-          background-image: linear-gradient(to right, #d1221a 25%, #b20303 60%, #df4e09);
+          background-image: linear-gradient(
+            to right,
+            #d1221a 25%,
+            #b20303 60%,
+            #df4e09
+          );
           border-radius: 6px;
           position: absolute;
           bottom: -5px;
           left: 0;
         }
-        &:after{
-          content: '';
+        &:after {
+          content: "";
           display: block;
           width: 25px;
           height: 30px;
           box-sizing: border-box;
           border-bottom: 10px solid chocolate;
           background: #b20303;
-          background-image: linear-gradient(to right, #d1221a 25%, #b20303 60%, #df4e09);
+          background-image: linear-gradient(
+            to right,
+            #d1221a 25%,
+            #b20303 60%,
+            #df4e09
+          );
           border-radius: 6px;
           position: absolute;
           bottom: -5px;
@@ -304,7 +424,11 @@ export default {
     background: chocolate;
     position: absolute;
     top: -10px;
-    background-image: linear-gradient(#d2691e,rgba(190, 102, 16, 0.5) 60%, #d2691e);
+    background-image: linear-gradient(
+      #d2691e,
+      rgba(190, 102, 16, 0.5) 60%,
+      #d2691e
+    );
     &:after {
       content: "";
       display: block;
@@ -356,24 +480,26 @@ export default {
     border-radius: 10px;
     z-index: -1;
   }
-  .pt10{padding-top: 10px;}
-  .row{
+  .pt10 {
+    padding-top: 10px;
+  }
+  .row {
     display: flex;
     flex-direction: row;
     position: relative;
     z-index: 99;
-    .row-left{
+    .row-left {
       flex: 1;
     }
-    .row-right{
+    .row-right {
       flex: 3;
     }
-    .btn-box{
+    .btn-box {
       flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
-      .btn-fn{
+      .btn-fn {
         background: #55a00a;
         width: 80px;
         height: 30px;
@@ -385,7 +511,7 @@ export default {
         text-shadow: 1px 1px 2px #e4393c;
         box-shadow: 0px 0px 6px #b24848 inset, 1px 1px 2px #c74242;
       }
-      .btn-handle{
+      .btn-handle {
         background: #333;
         width: 70px;
         height: 28px;
@@ -397,7 +523,7 @@ export default {
         text-shadow: 1px 1px 2px #e4393c;
         box-shadow: 0px 0px 7px #d1c1b9 inset, 1px 1px 2px #c74242;
       }
-      .btn-arrow{
+      .btn-arrow {
         background: #333;
         width: 50px;
         height: 25px;
@@ -409,7 +535,7 @@ export default {
         text-shadow: 1px 1px 2px #e4393c;
         box-shadow: 0px 0px 7px #d1c1b9 inset, 1px 1px 2px #c74242;
       }
-      .btn-num{
+      .btn-num {
         background: #333;
         width: 50px;
         height: 28px;
@@ -422,11 +548,11 @@ export default {
         align-items: center;
         text-shadow: 1px 1px 2px #e4393c;
         box-shadow: 0px 0px 7px #d1c1b9 inset, 1px 1px 2px #c74242;
-        .icon{
+        .icon {
           width: 14px;
         }
       }
-      .btn-switch{
+      .btn-switch {
         background: #e4393c;
         width: 50px;
         height: 28px;
@@ -439,11 +565,11 @@ export default {
         align-items: center;
         text-shadow: 1px 1px 2px #e4393c;
         box-shadow: 0px 0px 7px #5f260a inset, 1px 1px 2px #ae9b9b;
-        .switch{
+        .switch {
           width: 18px;
         }
       }
-      .btn-charg{
+      .btn-charg {
         background: #e4393c;
         width: 50px;
         height: 66px;
@@ -456,7 +582,7 @@ export default {
         align-items: center;
         text-shadow: 1px 1px 2px #e4393c;
         box-shadow: 0px 0px 8px #5f260a inset, 1px 1px 2px #ae9b9b;
-        .charg{
+        .charg {
           width: 30px;
           height: 35px;
           padding: 6px 0;
@@ -465,7 +591,7 @@ export default {
           box-shadow: 0px 0px 1px #e2ff00;
         }
       }
-      .btn-active{
+      .btn-active {
         background: #0b4b1c;
         text-shadow: 1px 1px 2px #e4393c;
         box-shadow: 0px 0px 20px #00fcee inset, 1px 1px 2px #e4f505;

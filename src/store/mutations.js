@@ -43,6 +43,11 @@ export const changeStyleType = (state,value='bj') => {
     state.styleType = value
 };
 
+//记录时间
+export const changeTimer = (state,value='0000-01-01 00:00:00') => {
+    state.timer = value
+};
+
 //更改当前键码
 export const changeKeyCode = (state,value=null) => {
     state.itemKeyCode = value;

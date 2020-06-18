@@ -68,7 +68,7 @@
         <span>{{FIRE_CONFIRM.hitMsg}}</span>
       </div>
       <!-- 提示框 -->
-      <div class="hit-modal" v-show="isShowHitBox">
+      <div class="hit-modal" v-show="FIRE_CONFIRM.isModelBox">
         <div class="card">
           <div class="title yellow">警告</div>
           <div class="hit-content origen">
@@ -187,7 +187,7 @@
       <!-- 爆破进度 -->
       <div class="fire-progress">
         <div class="text origen" :class="otherStyle">
-          <p v-if="fireStatus===0">正在爆破...</p>
+          <p v-if="FIRE_FIRE.fireStatus===0">正在爆破...</p>
           <p v-else>爆破完成</p>
         </div>
         <div class="progress" v-show="FIRE_FIRE.fireStatus===0">

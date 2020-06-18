@@ -1,10 +1,11 @@
 export default {
+    timer:null,//计时器
     id: null,//日志id
     device_id:null,//设备编号
     username: null,//操作人员名字
     usercode: null,//操作人员id号
     styleType: 'bj',//屏幕样式模式jd经典，yw夜晚，bj标准
-    itemKeyCode: ['NUM5'],//当前键盘键码
+    itemKeyCode: [],//当前键盘键码
     itemScreenMpdal: 'FIRE',//当前屏幕模块controllerScreen起爆控制模块，
     statusBar: {//状态条信息
         isShow: true,//是否显示状态条
