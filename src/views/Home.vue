@@ -61,7 +61,8 @@ export default {
     },
     demoFire() {
       let startTimes = new Date(dataObj.logModal[0].event_time).getTime();
-      setInterval(() => {
+      let endTimes = new Date(dataObj.logModal[dataObj.logModal.length-1].event_time).getTime(); 
+      let timeout = setInterval(() => {
         let timeStr = this.getDate(startTimes);
         startTimes += 1000;
         this.changeTimerAction(timeStr);
@@ -125,6 +126,10 @@ export default {
           } else if (item.source === "KEYBOARD") {
             this.changeKeyCodeAction([item.content]);
           }
+        }
+
+        if(startTimes>endTimes){
+          clearInterval(timeout);
         }
       }, 1000);
     },
