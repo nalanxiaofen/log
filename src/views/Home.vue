@@ -14,18 +14,22 @@
       </div>
     </div>
     <!-- 页面右部 -->
-    <div class="page-right"></div>
+    <div class="page-right">
+      <EventOrder></EventOrder>
+    </div>
   </div>
 </template>
 
 <script>
 import Detonator from './detonator/Detonator';
+import EventOrder from '../components/EventOrder';
 import { mapActions, mapState } from "vuex";
 import dataObj from "../demoData";
 export default {
   name: "Home",
   components: {
-    Detonator
+    Detonator,
+    EventOrder
   },
   computed:{
     ...mapState([
@@ -182,11 +186,15 @@ export default {
 .page-left {
   flex: 1;
   background: cornflowerblue;
+  display: flex;
+  flex-direction: column;
 }
 //页面右部
 .page-right {
   flex: 1;
   background: cornflowerblue;
+  display: flex;
+  flex-direction: column;
 }
 //页面中间
 .page-center {

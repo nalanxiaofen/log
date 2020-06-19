@@ -106,10 +106,10 @@ export default {
           margin-left: 4px;
           height: 10px;
           width: 16px;
-          padding: 1px;
           padding-right: 0;
           border-radius: 2px;
           border: 1px solid #20be17;
+          box-shadow: 0 0 0 1px #ffffff inset;
           background: #20be17;
           background-clip: content-box;
           position: relative;
