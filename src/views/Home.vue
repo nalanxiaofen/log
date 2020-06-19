@@ -1,7 +1,9 @@
 <template>
   <div class="page">
     <!--页面左部-->
-    <div class="page-left"></div>
+    <div class="page-left">
+      <Overall></Overall>
+    </div>
     <!-- 页面中部 -->
     <div class="page-center">
       <header>
@@ -23,13 +25,15 @@
 <script>
 import Detonator from './detonator/Detonator';
 import EventOrder from '../components/EventOrder';
+import Overall from '../components/Overall';
 import { mapActions, mapState } from "vuex";
 import dataObj from "../demoData";
 export default {
   name: "Home",
   components: {
     Detonator,
-    EventOrder
+    EventOrder,
+    Overall
   },
   computed:{
     ...mapState([
