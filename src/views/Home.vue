@@ -160,8 +160,8 @@ export default {
     }
   },
   mounted() {
-    this.demoFire();
-    this.chargeTime();
+    //this.demoFire();
+    //this.chargeTime();
   }
 };
 </script>

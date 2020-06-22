@@ -18,16 +18,22 @@
     </div>
     <div class="content">
       <FireScreen v-if="itemScreenMpdal==='FIRE'"></FireScreen>
+      <Welcome v-else-if="itemScreenMpdal==='WELCOME'"></Welcome>
+      <Main v-else-if="itemScreenMpdal==='MAIN'"></Main>
     </div>
   </div>
 </template>
 <script>
 import FireScreen from './FireScreen';
+import Welcome from './Welcome';
+import Main from './Main';
 import { mapGetters, mapState } from 'vuex';
 export default {
   name: "Screen",
   components:{
-    FireScreen
+    FireScreen,
+    Welcome,
+    Main
   },
   computed:{
     ...mapGetters([
