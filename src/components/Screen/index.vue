@@ -20,6 +20,7 @@
       <FireScreen v-if="itemScreenMpdal==='FIRE'"></FireScreen>
       <Welcome v-else-if="itemScreenMpdal==='WELCOME'"></Welcome>
       <Main v-else-if="itemScreenMpdal==='MAIN'"></Main>
+      <Single v-else-if="itemScreenMpdal==='CHK-SINGLE'"></Single>
     </div>
   </div>
 </template>
@@ -27,13 +28,15 @@
 import FireScreen from './FireScreen';
 import Welcome from './Welcome';
 import Main from './Main';
+import Single from './Single';
 import { mapGetters, mapState } from 'vuex';
 export default {
   name: "Screen",
   components:{
     FireScreen,
     Welcome,
-    Main
+    Main,
+    Single
   },
   computed:{
     ...mapGetters([

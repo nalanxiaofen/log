@@ -285,7 +285,8 @@ export default {
     .screen-content {
       position: relative;
       margin-bottom: 10px;
-      flex: 1;
+      width:100%;
+      height: 235px;
       border-left: 20px solid #333;
       border-right: 20px solid #333;
       border-top: 16px solid #333;
@@ -294,6 +295,7 @@ export default {
       border-radius: 8px;
       display: flex;
       z-index: 99;
+      overflow: hidden;
     }
   }
 }
