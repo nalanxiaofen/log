@@ -22,6 +22,8 @@
       <Main v-else-if="itemScreenMpdal==='MAIN'"></Main>
       <Single v-else-if="itemScreenMpdal==='CHK-SINGLE'"></Single>
       <AuthList v-else-if="itemScreenMpdal==='AUTH'"></AuthList>
+      <BlastList v-else-if="itemScreenMpdal==='RECORD'"></BlastList>
+      <DeviceData v-else-if="itemScreenMpdal==='SYS-R'"></DeviceData>
     </div>
   </div>
 </template>
@@ -31,6 +33,8 @@ import Welcome from './Welcome';
 import Main from './Main';
 import Single from './Single';
 import AuthList from './AuthList';
+import BlastList from './BlastList';
+import DeviceData from './DeviceData';
 import { mapGetters, mapState } from 'vuex';
 export default {
   name: "Screen",
@@ -39,7 +43,9 @@ export default {
     Welcome,
     Main,
     Single,
-    AuthList
+    AuthList,
+    BlastList,
+    DeviceData
   },
   computed:{
     ...mapGetters([
