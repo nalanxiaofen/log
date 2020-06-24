@@ -21,6 +21,7 @@
       <Welcome v-else-if="itemScreenMpdal==='WELCOME'"></Welcome>
       <Main v-else-if="itemScreenMpdal==='MAIN'"></Main>
       <Single v-else-if="itemScreenMpdal==='CHK-SINGLE'"></Single>
+      <AuthList v-else-if="itemScreenMpdal==='AUTH'"></AuthList>
     </div>
   </div>
 </template>
@@ -29,6 +30,7 @@ import FireScreen from './FireScreen';
 import Welcome from './Welcome';
 import Main from './Main';
 import Single from './Single';
+import AuthList from './AuthList';
 import { mapGetters, mapState } from 'vuex';
 export default {
   name: "Screen",
@@ -36,7 +38,8 @@ export default {
     FireScreen,
     Welcome,
     Main,
-    Single
+    Single,
+    AuthList
   },
   computed:{
     ...mapGetters([
