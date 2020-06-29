@@ -26,6 +26,7 @@
       <DeviceData v-else-if="itemScreenMpdal==='SYS-R'"></DeviceData>
       <Setting v-else-if="itemScreenMpdal==='SYS-W'"></Setting>
       <Scheme v-else-if="itemScreenMpdal==='DELAY'"></Scheme>
+      <Group v-else-if="itemScreenMpdal==='GROUP'"></Group>
     </div>
   </div>
 </template>
@@ -39,6 +40,7 @@ import BlastList from './BlastList';
 import DeviceData from './DeviceData';
 import Setting from './Settings';
 import Scheme from './Scheme';
+import Group from './Group';
 import { mapGetters, mapState } from 'vuex';
 export default {
   name: "Screen",
@@ -51,7 +53,8 @@ export default {
     BlastList,
     DeviceData,
     Setting,
-    Scheme
+    Scheme,
+    Group
   },
   computed:{
     ...mapGetters([
