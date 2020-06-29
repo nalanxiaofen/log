@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="page" v-if="status===0">
     <div class="content">
       <div class="th bg-yb">
         <div class="num-one">序号</div>
@@ -100,7 +100,7 @@
       </div>
     </div>
     <!-- 弹框 -->
-    <div class="hit-modal">
+    <div class="hit-modal" v-show="show">
       <div class="card">
         <div class="title yellow">请输入区号</div>
         <div class="hit-content">
@@ -116,11 +116,85 @@
         </div>
       </div>
     </div>
+    <!-- 操作选项 -->
+    <div class="make-modal" v-show="showMake">
+        <ul class="list-card">
+          <li class="item-h">选择操作</li>
+          <li class="item input-active">修改延时</li>
+          <li class="item">删除</li>
+          <li class="item">增加</li>
+          <li class="item">插入</li>
+          <li class="item">排序</li>
+          <li class="item">批量修改</li>
+          <li class="item">清除方案</li>
+        </ul>
+    </div>
+  </div>
+  <div class="page-order" v-else-if="status===1">
+    <header>排序方式</header>
+    <div class="content">
+      <div class="item">
+        <div class="btn bg-yellow input-active">延时</div>
+      </div>
+      <div class="item">
+        <div class="btn bg-yellow">UID</div>
+      </div>
+      <div class="item">
+        <div class="btn bg-yellow">孔号</div>
+      </div>
+    </div>
+    <footer>
+      <div class="btn-box">
+        <div class="btn bg-yellow">F1升序</div>
+      </div>
+      <div class="btn-box">
+        <div class="btn bg-yellow">F2降序</div>
+      </div>
+    </footer>
+  </div>
+  <div class="page-all" v-else-if="status===2">
+    <header>批量时差设置</header>
+    <ul class="set-list">
+      <li class="set-item">
+        <div class="item">
+          起始延时：<span class="bg-gruy origen">90</span>
+        </div>
+        <div class="item">
+          孔间延时：<span class="bg-gruy origen">90</span>
+        </div>
+      </li>
+      <li class="set-item">
+        <div class="item">
+          单孔数量：<span class="bg-gruy origen">9</span>
+        </div>
+        <div class="item">
+          孔内延时：<span class="bg-gruy origen">90</span>
+        </div>
+      </li>
+    </ul>
+    <div class="btn-wrap">
+      <div class="item">
+        <div class="btn bg-yellow">返回</div>
+      </div>
+      <div class="item">
+        <div class="btn bg-yellow">确认</div>
+      </div>
+    </div>
+    <footer class="blue">
+      提示:按*键进行时差设定
+    </footer>
   </div>
 </template>
 <script>
 export default {
-  name: "Scheme"
+  name: "Scheme",
+  data(){
+    return {
+      show:false,
+      showMake:false,
+      status:2
+    }
+  }
 };
 </script>
 <style lang="less" scoped>
@@ -146,11 +220,14 @@ export default {
 .white{
     color: #ffffff;
 }
+.blue{
+  color: blue;
+}
 .bg-blue{
     background-color: blue;
 }
 .bg-yellow {
-  background-color: #f1cc9c;
+  background-color: #ffe6c5;
 }
 .bg-green {
   background-color: darkgreen;
@@ -159,6 +236,9 @@ export default {
 .bg-origen {
   background-color: #ef7b2f;
   color: #ffffff;
+}
+.bg-gruy{
+  background-color: #bac9ca;
 }
 .bg-yb {
   background-color: #38fffb;
@@ -372,6 +452,125 @@ export default {
         }
       }
     }
+  }
+  .make-modal{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 99;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 30px;
+    .list-card{
+      width: 90px;
+      padding: 10px;
+      background-color: #c1cfca;
+      font-size: 13px;
+      border: 1px solid #7b8d6f;
+      border-radius: 4px;
+      .item-h{
+        border-bottom: 1px solid #555;
+      }
+    }
+  }
+}
+.page-order{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  header{
+    padding: 10px 0;
+    font-size: 22px;
+    font-weight: bold;
+  }
+  .content{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    .item{
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .btn{
+        padding: 5px 18px;
+        border-radius: 3px;
+        border: 1px solid #555;
+      }
+    }
+  }
+  footer{
+    margin-top: 20px;
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: row;
+    .btn-box{
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .btn{
+        font-size: 14px;
+        padding: 0 12px;
+        border-radius: 3px;
+        border: 1px solid #555;
+      }
+    }
+  }
+}
+.page-all{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  header{
+    padding: 5px;
+    font-size: 22px;
+    font-weight: bold;
+  }
+  .set-list{
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 10px;
+    .set-item{
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      .item{
+        flex: 1;
+        span{
+          display: inline-block;
+          vertical-align: middle;
+          width: 50px;
+        }
+      }
+    }
+  }
+  .btn-wrap{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    .item{
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .btn{
+        padding: 0 12px;
+        border: 1px solid #555;
+        border-radius: 3px;
+        font-size: 14px;
+      }
+    }
+  }
+  footer{
+    padding: 5px;
+    font-size: 14px;
   }
 }
 </style>
