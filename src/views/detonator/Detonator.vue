@@ -134,7 +134,8 @@
 
 <script>
 import Screen from "../../components/Screen/index";
-import { mapState } from "vuex";
+import { createNamespacedHelpers } from "vuex";
+const { mapState } = createNamespacedHelpers('screen');
 export default {
   name: "Detonator",
   components: {

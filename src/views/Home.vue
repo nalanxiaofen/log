@@ -26,7 +26,8 @@
 import Detonator from './detonator/Detonator';
 import EventOrder from '../components/EventOrder';
 import Overall from '../components/Overall';
-import { mapActions, mapState } from "vuex";
+import { createNamespacedHelpers } from "vuex";
+const { mapState, mapActions } = createNamespacedHelpers('screen');
 import dataObj from "../demoData";
 export default {
   name: "Home",
@@ -144,7 +145,7 @@ export default {
     chargeTime(){
       let num = 0;
       let timeout = setInterval(()=>{
-        let FIRE_CHARGE = this.$store.state.controllerScreen.FIRE_CHARGE;
+        let FIRE_CHARGE = this.$store.state.screen.controllerScreen.FIRE_CHARGE;
         if(FIRE_CHARGE.chargeStatus===1){
           num++;
           this.changeFIRE_CHARGE_Action({

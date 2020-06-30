@@ -41,7 +41,8 @@ import DeviceData from './DeviceData';
 import Setting from './Settings';
 import Scheme from './Scheme';
 import Group from './Group';
-import { mapGetters, mapState } from 'vuex';
+import { createNamespacedHelpers } from "vuex";
+const { mapState, mapGetters } = createNamespacedHelpers('screen');
 export default {
   name: "Screen",
   components:{

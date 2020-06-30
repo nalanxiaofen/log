@@ -202,7 +202,8 @@
   </div>
 </template>
 <script>
-import { mapState, mapGetters } from "vuex";
+import { createNamespacedHelpers } from "vuex";
+const { mapState, mapGetters } = createNamespacedHelpers('screen');
 export default {
   name: "FireScreen",
   computed: {
