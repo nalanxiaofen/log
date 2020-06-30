@@ -151,7 +151,7 @@
           </li>
           <li>
             <p :class="otherStyle">
-              请按<img class="icon" src="../../assets/icon_lightning.png" alt="充电" />键进行充电
+              请按<img class="icon" src="../../assets/screen/icon_lightning.png" alt="充电" />键进行充电
             </p>
           </li>
         </ul>
