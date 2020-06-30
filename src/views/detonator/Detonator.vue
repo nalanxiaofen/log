@@ -62,7 +62,7 @@
           <div class="row-left">
             <div class="btn-box pt10">
               <div class="btn-charg" :class="{'btn-active':isKeyCode('CHARGE')}">
-                <img class="charg" alt="Vue logo" src="../../assets/screen/icon_lightning.png" />
+                <img class="charg" alt="Vue logo" src="@/assets/screen/icon_lightning.png" />
               </div>
             </div>
           </div>
@@ -112,12 +112,12 @@
         <div class="row pt10">
           <div class="btn-box">
             <div class="btn-switch" :class="{'btn-active':isKeyCode('ONOFF')}">
-              <img class="switch" alt="Vue logo" src="../../assets/screen/icon_switch.png" />
+              <img class="switch" alt="Vue logo" src="@/assets/screen/icon_switch.png" />
             </div>
           </div>
           <div class="btn-box">
             <div class="btn-num" :class="{'btn-active':isKeyCode('STAR')}">
-              <img class="icon" alt="Vue logo" src="../../assets/screen/icon_xing.png" />
+              <img class="icon" alt="Vue logo" src="@/assets/screen/icon_xing.png" />
             </div>
           </div>
           <div class="btn-box">

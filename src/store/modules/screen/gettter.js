@@ -88,11 +88,11 @@ export const locationIcon = state => {
     let styleType = state.styleType;
     switch (styleType) {
         case 'jd':
-            return require('../assets/screen/icon_location_jd.png');
+            return require('@/assets/screen/icon_location_jd.png');
         case 'yw':
-            return require('../assets/screen/icon_location_yw.png');
+            return require('@/assets/screen/icon_location_yw.png');
         default:
-            return require('../assets/screen/icon_location.png');
+            return require('@/assets/screen/icon_location.png');
     }
 }
 
@@ -101,11 +101,11 @@ export const blueToothIcon = state => {
     let styleType = state.styleType;
     switch (styleType) {
         case 'jd':
-            return require('../assets/screen/icon_bluetooth_jd.png');
+            return require('@/assets/screen/icon_bluetooth_jd.png');
         case 'yw':
-            return require('../assets/screen/icon_bluetooth_yw.png');
+            return require('@/assets/screen/icon_bluetooth_yw.png');
         default:
-            return require('../assets/screen/icon_bluetooth.png');
+            return require('@/assets/screen/icon_bluetooth.png');
     }
 }
 
@@ -114,11 +114,11 @@ export const wifiIcon = state => {
     let styleType = state.styleType;
     switch (styleType) {
         case 'jd':
-            return require('../assets/screen/icon_wifi_jd.png');
+            return require('@/assets/screen/icon_wifi_jd.png');
         case 'yw':
-            return require('../assets/screen/icon_wifi_yw.png');
+            return require('@/assets/screen/icon_wifi_yw.png');
         default:
-            return require('../assets/screen/icon_wifi.png');
+            return require('@/assets/screen/icon_wifi.png');
     }
 }
 
@@ -127,11 +127,11 @@ export const chargeIcon = state => {
     let styleType = state.styleType;
     switch (styleType) {
         case 'jd':
-            return require('../assets/screen/icon_charge_jd.png');
+            return require('@/assets/screen/icon_charge_jd.png');
         case 'yw':
-            return require('../assets/screen/icon_charge_yw.png');
+            return require('@/assets/screen/icon_charge_yw.png');
         default:
-            return require('../assets/screen/icon_charge.png');
+            return require('@/assets/screen/icon_charge.png');
     }
 }
 
