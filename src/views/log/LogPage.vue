@@ -7,7 +7,7 @@
     <!-- 页面中部 -->
     <div class="page-center">
       <header>
-        <img class="logo" alt="Vue logo" src="../assets/logo.png" />
+        <img class="logo" alt="Vue logo" src="@/assets/logo.png" />
         <span class="title">起爆器操作日志复现</span>
         <span class="timer">{{timerStr}}</span>
       </header>
@@ -23,14 +23,14 @@
 </template>
 
 <script>
-import Detonator from './detonator/Detonator';
-import EventOrder from '../components/EventOrder';
-import Overall from '../components/Overall';
+import Detonator from './Detonator';
+import EventOrder from './EventOrder';
+import Overall from './Overall';
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers('screen');
-import dataObj from "../demoData";
+import dataObj from "../../demoData";
 export default {
-  name: "Home",
+  name: "LogPage",
   components: {
     Detonator,
     EventOrder,
